@@ -53,10 +53,10 @@ const getHeight = (t, currMax=0) => {
     return max;
 };
 
-const BST = main();
+// const BST = main();
 
-max = getHeight(BST);
-console.log(`max is = ${max}`);
+// max = getHeight(BST);
+// console.log(`max is = ${max}`);
 
 
 /*
@@ -97,7 +97,7 @@ fakeBST1.left.right = new BinarySearchTree(5, 5);
 fakeBST1.right = new BinarySearchTree(13, 13);
 fakeBST1.right.right = new BinarySearchTree(8, 8);
 
-console.log(fakeBST1);
+// console.log(fakeBST1);
 
 const isBST = (bst) => {
   if (bst===null)
@@ -114,3 +114,60 @@ const isBST = (bst) => {
 console.log(isBST(fakeBST));  //false
 console.log(isBST(fakeBST1)); //false
 */
+
+/*
+
+            3             
+        1       4          
+          2       -6-            
+                5   9
+                   7
+
+*/
+
+//loop through the tree -- keep track
+//compair all the loops and return key at n - 3 
+
+const thirdLargest = (BST, path='', results=[]) => {
+    //Base Case
+    if(!BST) {
+        results.push(path);
+    }
+    else {
+        path = path + BST.key;
+        thirdLargest(BST.left, path, results);
+        thirdLargest(BST.right, path, results);
+    }
+    return results;
+};
+
+const thirdHelper = (array) => {
+    let longestPath = array.reduce((acc, string) => {
+        if(acc.length > string.length) {
+            return acc;
+        }
+        else {
+            return string;
+        }
+    }, '');
+    return longestPath[(longestPath.length-3)];
+};
+
+const BST = new BinarySearchTree();
+
+let array = [3,1,4,6,9,2,5,7];
+// let array = 'E A S Y Q U T I O N'.split(' ');
+/*
+            E
+          A     S
+              Q   Y
+             I    U
+              O  T
+            N
+*/
+
+array.forEach(item => {
+    BST.insert(item, item);
+});
+
+// console.log(thirdHelper(thirdLargest(BST))); //6
