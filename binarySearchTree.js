@@ -1,3 +1,5 @@
+'use strict';
+
 class BinarySearchTree {
     constructor(key = null, value = null, parent = null) {
         this.key = key;
@@ -9,7 +11,7 @@ class BinarySearchTree {
 
     insert(key, value) {
         // If the tree is empty then this key being inserted is the root node of the tree
-        if (this.key == null) {
+        if (this.key === null) {
             this.key = key;
             this.value = value;
         }
@@ -23,7 +25,7 @@ class BinarySearchTree {
                meaning that if the `left` pointer is empty,
                then we can just instantiate and insert the new node
                as the left child of that node, passing `this` as the parent */
-            if (this.left == null) {
+            if (this.left === null) {
                 this.left = new BinarySearchTree(key, value, this);
             }
             /* If the node has an existing left child,
@@ -36,7 +38,7 @@ class BinarySearchTree {
         /* Similarly, if the new key is greater than the node's key
            then you do the same thing, but on the right-hand side */
         else {
-            if (this.right == null) {
+            if (this.right === null) {
                 this.right = new BinarySearchTree(key, value, this);
             }
             else {
@@ -47,7 +49,7 @@ class BinarySearchTree {
 
     find(key) {
         // If the item is found at the root then return that value
-        if (this.key == key) {
+        if (this.key === key) {
             return this.value;
         }
         /* If the item you are looking for is less than the root
@@ -73,7 +75,7 @@ class BinarySearchTree {
     }
 
     remove(key) {
-        if (this.key == key) {
+        if (this.key === key) {
             if (this.left && this.right) {
                 const successor = this.right._findMin();
                 this.key = successor.key;
@@ -110,10 +112,10 @@ class BinarySearchTree {
 
     _replaceWith(node) {
         if (this.parent) {
-            if (this == this.parent.left) {
+            if (this === this.parent.left) {
                 this.parent.left = node;
             }
-            else if (this == this.parent.right) {
+            else if (this === this.parent.right) {
                 this.parent.right = node;
             }
 
@@ -144,6 +146,6 @@ class BinarySearchTree {
         return this.left._findMin();
     }
 
-  }
+}
 
-  module.exports = BinarySearchTree;
+module.exports = BinarySearchTree;
