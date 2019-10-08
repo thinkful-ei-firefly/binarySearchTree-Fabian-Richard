@@ -225,5 +225,3 @@ const array2 = [3, 1, 5, 2, 4, 6, 0]
 const array3 = [3, 2, 5, 1, 4, 6, 0]
 console.log(isSame(array1, array2));//true
 console.log(isSame(array1, array3));//false
-
-b55973fc662a311ff989da093657904b850a2fb9
