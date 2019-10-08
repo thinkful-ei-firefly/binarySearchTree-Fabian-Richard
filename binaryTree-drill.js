@@ -61,8 +61,8 @@ const getHeight = (t, currMax=0) => {
 
 /*
       7
-   3     13
-2    5      39
+   3     8
+2    5      9
 
 
       7
@@ -81,7 +81,7 @@ validBST.left = new BinarySearchTree(3, 3);
 validBST.left.left = new BinarySearchTree(2, 2);
 validBST.left.right = new BinarySearchTree(5, 5);
 validBST.right = new BinarySearchTree(13, 13);
-validBST.right.right = new BinarySearchTree(39, 39);
+validBST.right.right = new BinarySearchTree(33, 33);
 
 const fakeBST = new BinarySearchTree(7, 7);
 fakeBST.left = new BinarySearchTree(3, 3);
@@ -117,16 +117,16 @@ console.log(isBST(fakeBST1)); //false
 
 /*
 
-            3             
-        1       4          
-          2       -6-            
+            3
+        1       4
+          2       -6-
                 5   9
                    7
 
 */
 
 //loop through the tree -- keep track
-//compair all the loops and return key at n - 3 
+//compair all the loops and return key at n - 3
 
 const thirdLargest = (BST, path='', results=[]) => {
     //Base Case
@@ -134,7 +134,7 @@ const thirdLargest = (BST, path='', results=[]) => {
         results.push(path);
     }
     else {
-        path = path + BST.key;
+        path = path +':'+ BST.key;
         thirdLargest(BST.left, path, results);
         thirdLargest(BST.right, path, results);
     }
@@ -171,3 +171,16 @@ array.forEach(item => {
 });
 
 // console.log(thirdHelper(thirdLargest(BST))); //6
+
+const thirdHelperBalance = (array) => {
+    let smaller = array[0].split(':').length;
+    for (let i=1; i<array.length; i++){
+      if (Math.abs(smaller - array[i].split(':').length) > 1) return false
+      if (array[i].split(':').length< smaller) smaller=array[i].split(':').length
+    }
+    return true;
+};
+
+/*console.log(thirdHelperBalance(thirdLargest(BST))); //False
+console.log(thirdHelperBalance(thirdLargest(validBST))); //True
+*/
