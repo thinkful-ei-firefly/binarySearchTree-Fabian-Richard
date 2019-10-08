@@ -8,10 +8,12 @@ const isSame = (arr1, arr2) => {
         return false;
     }
 
-    let arr1Left = for(let i=1; i<arr1.length; i++) 
-    let arr1Right
-    let arr2Left 
-    let arr2Right
+    let arr1Left = [];
+    let arr1Right = [];
+    let arr2Left = [];
+    let arr2Right =[];
+
+    for(let i=1; i<arr1.length; i++)
     
 
 };
