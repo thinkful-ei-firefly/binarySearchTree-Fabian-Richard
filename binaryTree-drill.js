@@ -184,3 +184,43 @@ const thirdHelperBalance = (array) => {
 /*console.log(thirdHelperBalance(thirdLargest(BST))); //False
 console.log(thirdHelperBalance(thirdLargest(validBST))); //True
 */
+
+
+const isSame = (aL1, aL2) => {
+  if (aL1.length != aL2.length)
+      return false;
+  if (aL1.length == 0)
+      return true;
+  if (aL1[0] != aL2[0])
+      return false;
+
+  // Construct two lists from each input array. The first
+  // list contains values smaller than first value, i.e.,
+  // left subtree. And second list contains right subtree.
+  let aLLeft1 = [];
+  let aLRight1 = [];
+  let aLLeft2 = [];
+  let aLRight2 = [];
+  for (let i = 1; i < aL1.length; i++) {
+      if (aL1[i] < aL1[0])
+          aLLeft1.push(aL1[i]);
+      else
+          aLRight1.push(aL1[i]);
+
+      if (aL2[i] < aL2[0])
+          aLLeft2.push(aL2[i]);
+      else
+          aLRight2.push(aL2[i]);
+  }
+
+  // Recursively compare left and right
+  // subtrees.
+  return isSame(aLLeft1, aLLeft2) &&
+         isSame(aLRight1, aLRight2);
+}
+
+const array1 = [3, 5, 4, 6, 1, 0, 2]
+const array2 = [3, 1, 5, 2, 4, 6, 0]
+const array3 = [3, 2, 5, 1, 4, 6, 0]
+console.log(isSame(array1, array2));//true
+console.log(isSame(array1, array3));//false
