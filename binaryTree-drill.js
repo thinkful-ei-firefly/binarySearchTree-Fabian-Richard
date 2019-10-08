@@ -19,7 +19,7 @@ function main(){
     });
 
     // console.log(BST1);
-    return BST;
+    return BST1;
 
 }
 /*
@@ -38,19 +38,22 @@ let max = 0;
 const getHeight = (t, currMax=0) => {
     //Base Case this.left and this.right === null
     if(!t) {
-        if(currMax > max) {
-            max = currMax;
-            return max;
-        }
         return;
     }
-    currMax++;
-    //call function again
-    getHeight(t.left, currMax);
-    getHeight(t.right, currMax);
+    else {
+        currMax++;
+        //call function again
+        getHeight(t.left, currMax);
+        getHeight(t.right, currMax);
+    }
+    // console.log(max);
+    if(currMax > max) {
+        max = currMax;
+    }
+    return max;
 };
 
 const BST = main();
 
-getHeight(BST);
-console.log(max);
+max = getHeight(BST);
+console.log(`max is = ${max}`);
