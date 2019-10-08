@@ -57,3 +57,60 @@ const BST = main();
 
 max = getHeight(BST);
 console.log(`max is = ${max}`);
+
+
+/*
+      7
+   3     13
+2    5      39
+
+
+      7
+   3     13
+1   2      39
+
+
+     7
+  3     13
+2  5       8
+
+*/
+
+const validBST = new BinarySearchTree(7, 7);
+validBST.left = new BinarySearchTree(3, 3);
+validBST.left.left = new BinarySearchTree(2, 2);
+validBST.left.right = new BinarySearchTree(5, 5);
+validBST.right = new BinarySearchTree(13, 13);
+validBST.right.right = new BinarySearchTree(39, 39);
+
+const fakeBST = new BinarySearchTree(7, 7);
+fakeBST.left = new BinarySearchTree(3, 3);
+fakeBST.left.left = new BinarySearchTree(1, 1);
+fakeBST.left.right = new BinarySearchTree(2, 2);
+fakeBST.right = new BinarySearchTree(13, 13);
+fakeBST.right.right = new BinarySearchTree(39, 39);
+
+const fakeBST1 = new BinarySearchTree(7, 7);
+fakeBST1.left = new BinarySearchTree(3, 3);
+fakeBST1.left.left = new BinarySearchTree(2, 2);
+fakeBST1.left.right = new BinarySearchTree(5, 5);
+fakeBST1.right = new BinarySearchTree(13, 13);
+fakeBST1.right.right = new BinarySearchTree(8, 8);
+
+console.log(fakeBST1);
+
+const isBST = (bst) => {
+  if (bst===null)
+    return true;
+
+  if ((bst.left && bst.left.key>bst.key) || (bst.right && bst.right.key<bst.key)){
+    return false
+  }else{
+    return isBST(bst.left) && isBST(bst.right)
+  }
+}
+
+/*console.log(isBST(validBST)); //true
+console.log(isBST(fakeBST));  //false
+console.log(isBST(fakeBST1)); //false
+*/
